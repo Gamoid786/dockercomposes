@@ -1,0 +1,24 @@
+version: "3.8"
+
+services:
+  mc:
+    # FTBA support is only available in non-Alpine images
+    image: itzg/minecraft-server:java17-jdk
+    ports:
+      # expose the Minecraft server port outside of container
+      - 2556:2556
+    environment:
+      tty: "TRUE"
+      stdin_open: "TRUE"
+      # REQUIRED for all types
+      EULA: "TRUE"
+      # Set server type (vs the default of vanilla)
+      TYPE: FTBA
+      # Use Pack ID from https://www.feed-the-beast.com/modpacks/97-ftb-one?tab=about
+      FTB_MODPACK_ID: "97"
+      FTB_MODPACK_VERSION_ID: "11460"
+      INIT_MEMORY: "4G"
+      MAX_MEMORY: "8G"
+    volumes:
+      # use a named, managed volume for data volume
+      - ftba:/data
