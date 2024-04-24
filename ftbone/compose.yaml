@@ -1,5 +1,8 @@
 version: "3.8"
 
+volumes:
+  ftba:
+
 services:
   mc:
     # FTBA support is only available in non-Alpine images
