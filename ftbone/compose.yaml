@@ -4,6 +4,9 @@ services:
   mc:
     # FTBA support is only available in non-Alpine images
     image: itzg/minecraft-server:java17-jdk
+    networks:
+      macvlan network idkanything:
+        external: true
     ports:
       # expose the Minecraft server port outside of container
       - 2556:2556
