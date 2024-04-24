@@ -19,6 +19,7 @@ services:
       # REQUIRED for all types
       EULA: "TRUE"
       # Set server type (vs the default of vanilla)
+      TYPE: FTBA
       # Use Pack ID from https://www.feed-the-beast.com/modpacks/97-ftb-one?tab=about
       FTB_MODPACK_ID: "97"
       FTB_MODPACK_VERSION_ID: "11460"
