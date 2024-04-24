@@ -6,9 +6,9 @@ services:
     image: registry.gitlab.com/crafty-controller/crafty-4:latest
     restart: always
     environment:
-        - TZ=Etc/UTC
+        - TZ=Europe/London
     ports:
-        - "8000:8000" # HTTP
+        - "8001:8001" # HTTP
         - "8443:8443" # HTTPS
         - "8123:8123" # DYNMAP
         - "19132:19132/udp" # BEDROCK
