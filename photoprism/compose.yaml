@@ -41,3 +41,6 @@ services:
       - "./database:/var/lib/mysql" # DO NOT REMOVE
     env_file:
       - stack.env
+
+#https://docs.photoprism.app/user-guide/backups/
+#https://docs.photoprism.app/user-guide/backups/restore/
