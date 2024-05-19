@@ -3,9 +3,9 @@ version: "3.7"
 services:
   tailscale-nginx:
     image: tailscale/tailscale:latest
-    hostname: tailscale-nginx
+    hostname: tailscale
     environment:
-      - TS_AUTHKEY=tskey-client-notAReal-OAuthClientSecret1Atawk
+      - TS_AUTHKEY=tskey-client-kBS7VcwxNr11CNTRL-Ea8cuJSmLJZqsdLBfTKVHZ7eCz1ZSeQmT
       - TS_EXTRA_ARGS=--advertise-tags=tag:container
       - TS_STATE_DIR=/var/lib/tailscale
       - TS_USERSPACE=false
@@ -17,8 +17,3 @@ services:
       - net_admin
       - sys_module
     restart: unless-stopped
-  nginx:
-    image: nginx
-    depends_on:
-      - tailscale-nginx
-    network_mode: service:tailscale-nginx
