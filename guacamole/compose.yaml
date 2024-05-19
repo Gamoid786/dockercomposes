@@ -1,19 +1,19 @@
+#####################################################################################
+# docker-compose file for Apache Guacamole
+# created by PCFreak 2017-06-28
 ####################################################################################
-# Apache Guacamole is a clientless remote desktop gateway. It supports standard
-# protocols like VNC, RDP, and SSH. We call it clientless because no plugins or
-# client software are required. Thanks to HTML5, once Guacamole is installed on
-# a server, all you need to access your desktops is a web browser.
 #
 # The initial login to the guacamole webinterface is:
 #
 #     Username: guacadmin
 #     Password: guacadmin
 #
-####################################################################################
+#####################################################################################
 
 version: '2.0'
 
 # networks
+# create a network 'guacnetwork_compose' in mode 'bridged'
 networks:
   guacnetwork_compose:
     driver: bridge
@@ -30,6 +30,21 @@ services:
     volumes:
     - ./drive:/drive:rw
     - ./record:/record:rw
+  # postgres
+  postgres:
+    container_name: postgres_guacamole_compose
+    environment:
+      PGDATA: /var/lib/postgresql/data/guacamole
+      POSTGRES_DB: guacamole_db
+      POSTGRES_PASSWORD: 'ChooseYourOwnPasswordHere1234'
+      POSTGRES_USER: guacamole_user
+    image: postgres:15.2-alpine
+    networks:
+      guacnetwork_compose:
+    restart: always
+    volumes:
+    - ./init:/docker-entrypoint-initdb.d:z
+    - ./data:/var/lib/postgresql/data:Z
 
   # guacamole
   guacamole:
@@ -52,5 +67,6 @@ services:
 ## enable next line if not using nginx
     - 8080:8080/tcp
 ## enable next line when using nginx
-##    - 8080/tcp
     restart: always
+    
+####################################################################################
