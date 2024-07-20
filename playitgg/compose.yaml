@@ -1,0 +1,7 @@
+services:
+  playit:
+    image: wisdomsky/playit-docker-web:latest
+    restart: unless-stopped
+    network_mode: host
+    volumes:
+      - /mnt/storage/playit-docker/config:/config
